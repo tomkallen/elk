@@ -30,7 +30,16 @@ class DOM {
         return this;
     }
 
-    toggle(cl) {
+    hasClass(cl) {
+        return this.el.filter(el => el.classList.contains(el)).length;
+    }
+
+    setClass(cl) {
+        this.el.forEach(el => el.className = cl);
+        return this;
+    }
+
+    toggleClass(cl) {
         this.el.forEach(el => el.classList.toggle(cl))
         return this;
     }
