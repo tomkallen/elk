@@ -46,20 +46,20 @@ class DOM {
 
     wait(t, cb) {
         return setTimeout(() => cb(this), t),
-        this;
+            this;
     }
 
     hide(el) {
-        const list = el
-            ? Array.from(document.querySelectorAll(el))
-            : this.el
+        const list = el ?
+            Array.from(document.querySelectorAll(el)) :
+            this.el
 
         list.forEach(e => {
             if (!e.getAttribute("elk-oldVisibilty")) {
                 const style = (
-                    window.getComputedStyle
-                    ? getComputedStyle(e, null)
-                    : e.currentStyle).display;
+                    window.getComputedStyle ?
+                    getComputedStyle(e, null) :
+                    e.currentStyle).display;
                 e.setAttribute("elk-oldVisibilty", style);
                 e.style.display = 'none';
             }
@@ -67,12 +67,35 @@ class DOM {
     }
 
     show(el) {
-        const list = el
-            ? Array.from(document.querySelectorAll(el))
-            : this.el
+        const list = el ?
+            Array.from(document.querySelectorAll(el)) :
+            this.el
 
         list.forEach(e => {
             e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
+        })
+    }
+
+    toggle(el) {
+        const list = el ?
+            Array.from(document.querySelectorAll(el)) :
+            this.el
+
+        list.forEach(e => {
+            console.log(e)
+            const style = (window.getComputedStyle ? getComputedStyle(e, null) : e.currentStyle).display;
+            if (style == 'none') {
+                e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
+            } else {
+                if (!e.getAttribute("elk-oldVisibilty")) {
+                    const style = (
+                        window.getComputedStyle ?
+                        getComputedStyle(e, null) :
+                        e.currentStyle).display;
+                    e.setAttribute("elk-oldVisibilty", style);
+                    e.style.display = 'none';
+                }
+            };
         })
     }
 
