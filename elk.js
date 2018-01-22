@@ -4,36 +4,35 @@ function h(el) {
 
 class DOM {
     constructor(el) {
-        this.el = document.querySelector(el);
+        this.el = Array.from(document.querySelectorAll(el));
     }
 
     html(val) {
-        return val
-            ? ((this.el.innerHTML = val), this)
-            : this.el.innerHTML;
+        if (val) {
+            this.el.forEach(e => e.innerHTML = val)
+            return this;
+        } else {
+            return this.el[this.el.length - 1].innerHTML;
+        }
     }
 
     text(val) {
-        return val
-            ? ((this.el.textContent = val), this)
-            : this.el.textContent;
+        if (val) {
+            this.el.forEach(e => e.textContent = val)
+            return this;
+        } else {
+            return this.el[this.el.length - 1].textContent;
+        }
     }
 
     on(event, cb) {
-        return this.el.addEventListener(event, () => cb(this)),
-        this;
+        this.el.forEach(el => el.addEventListener(event, () => cb(this)))
+        return this;
     }
 
     toggle(cl) {
-        let classes = DOM.classes(this.el);
-        const index = classes.indexOf(cl)
-        if (index >= 0) {
-            classes = classes.filter((c, i) => i !== index)
-        } else {
-            classes.push(cl);
-        }
-        this.el.className = classes.join(" ");
-        return this
+        this.el.forEach(el => el.classList.toggle(cl))
+        return this;
     }
 
     wait(t, cb) {
@@ -42,28 +41,25 @@ class DOM {
     }
 
     addClass(cl) {
-        return this.el.classList.add(cl),
-        this;
+        this.el.forEach(el => el.classList.add(cl))
+        return this;
     }
 
     removeClass(cl) {
-        return this.el.classList.remove(cl),
-        this;
+        this.el.forEach(el => el.classList.remove(cl))
+        return this;
     }
 
     kill(el = this.el) {
-        if (DOM._isNode(el)) {
+        if (!Array.isArray(el)) {
             el.remove();
         } else {
-            return this;
+            this.el.forEach(el => el.remove())
         }
+        return this
     }
 
     static _isNode(el) {
-        return el && (el.nodeType === 1 || el.nodeType === 11);
-    }
-
-    static classes(el) {
-        return el.className.split(" ");
+        return el && (el.nodeType === 1 || el.nodeType == 11);
     }
 }
