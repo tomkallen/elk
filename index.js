@@ -1,5 +1,6 @@
-
 console.log(h(".mydiv").html())
 h(".mydiv")
     .html("Click me")
-    .on("click", el => el.toggleClass("secondclass"))
+    .on("click", el => el.show(".mydiv2"))
+h(".mydiv")
+    .hide([".mydiv2"])

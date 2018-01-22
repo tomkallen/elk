@@ -49,6 +49,33 @@ class DOM {
         this;
     }
 
+    hide(el) {
+        const list = el
+            ? Array.from(document.querySelectorAll(el))
+            : this.el
+
+        list.forEach(e => {
+            if (!e.getAttribute("elk-oldVisibilty")) {
+                const style = (
+                    window.getComputedStyle
+                    ? getComputedStyle(e, null)
+                    : e.currentStyle).display;
+                e.setAttribute("elk-oldVisibilty", style);
+                e.style.display = 'none';
+            }
+        })
+    }
+
+    show(el) {
+        const list = el
+            ? Array.from(document.querySelectorAll(el))
+            : this.el
+
+        list.forEach(e => {
+            e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
+        })
+    }
+
     addClass(cl) {
         this.el.forEach(el => el.classList.add(cl))
         return this;
