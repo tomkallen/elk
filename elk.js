@@ -8,31 +8,47 @@ class DOM {
     }
 
     html(val) {
-        return val ? ((this.el.innerHTML = val), this) : this.el.innerHTML;
+        return val
+            ? ((this.el.innerHTML = val), this)
+            : this.el.innerHTML;
     }
 
     text(val) {
-        return val ? ((this.el.textContent = val), this) : this.el.textContent;
+        return val
+            ? ((this.el.textContent = val), this)
+            : this.el.textContent;
     }
 
     on(event, cb) {
-        return this.el.addEventListener(event, () => cb(this)), this;
+        return this.el.addEventListener(event, () => cb(this)),
+        this;
     }
 
     toggle(cl) {
-        return this.el.classList.toggle(cl), this;
+        let classes = DOM.classes(this.el);
+        const index = classes.indexOf(cl)
+        if (index >= 0) {
+            classes = classes.filter((c, i) => i !== index)
+        } else {
+            classes.push(cl);
+        }
+        this.el.className = classes.join(" ");
+        return this
     }
 
     wait(t, cb) {
-        return setTimeout(() => cb(this), t), this;
+        return setTimeout(() => cb(this), t),
+        this;
     }
 
     addClass(cl) {
-        return this.el.classList.add(cl), this;
+        return this.el.classList.add(cl),
+        this;
     }
 
     removeClass(cl) {
-        return this.el.classList.remove(cl), this;
+        return this.el.classList.remove(cl),
+        this;
     }
 
     kill(el = this.el) {
@@ -44,6 +60,10 @@ class DOM {
     }
 
     static _isNode(el) {
-        return el && (el.nodeType === 1 || el.nodeType == 11);
+        return el && (el.nodeType === 1 || el.nodeType === 11);
+    }
+
+    static classes(el) {
+        return el.className.split(" ");
     }
 }
