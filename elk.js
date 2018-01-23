@@ -12,7 +12,7 @@ class DOM {
             this.el.forEach(e => e.innerHTML = val)
             return this;
         } else {
-            return this.el[this.el.length - 1].innerHTML;
+            return this.el.map(e => e.innerHTML);
         }
     }
 
@@ -21,7 +21,7 @@ class DOM {
             this.el.forEach(e => e.textContent = val)
             return this;
         } else {
-            return this.el[this.el.length - 1].textContent;
+            return this.el.map(e => e.textContent);
         }
     }
 
