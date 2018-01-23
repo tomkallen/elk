@@ -103,11 +103,11 @@ class DOM {
                 }
             };
         })
+        return this;
     }
 
     addClass(cl) {
-        this.el.forEach(el => el.classList.add(cl))
-        return this;
+        return this.el.forEach(el => el.classList.add(cl)), this;
     }
 
     removeClass(cl) {
@@ -125,7 +125,7 @@ class DOM {
         } else {
             this.el.forEach(el => el.remove())
         }
-        return this
+        return this;
     }
 
     static _isNode(el) {
