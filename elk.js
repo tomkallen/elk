@@ -82,7 +82,6 @@ class DOM {
             this.el
 
         list.forEach(e => {
-            console.log(e)
             const style = (window.getComputedStyle ? getComputedStyle(e, null) : e.currentStyle).display;
             if (style == 'none') {
                 e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
