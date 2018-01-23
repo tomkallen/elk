@@ -26,8 +26,8 @@ class DOM {
     }
 
     on(event, cb) {
-        this.el.forEach(el => el.addEventListener(event, () => cb(this)))
-        return this;
+        return this.el.forEach(el => el.addEventListener(event, () => cb(this))),
+        this;
     }
 
     hasClass(cl) {
@@ -42,8 +42,8 @@ class DOM {
     }
 
     toggleClass(cl) {
-        this.el.forEach(el => el.classList.toggle(cl))
-        return this;
+        return this.el.forEach(el => el.classList.toggle(cl)),
+        this;
     }
 
     wait(t, cb) {
@@ -109,7 +109,11 @@ class DOM {
     }
 
     removeClass(cl) {
-        this.el.forEach(el => el.classList.remove(cl))
+        if (cl) {
+            this.el.forEach(el => el.classList.remove(cl))
+        } else {
+            this.el.forEach(el => el.className = "")
+        }
         return this;
     }
 
