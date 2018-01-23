@@ -1,5 +1,5 @@
 function h(el) {
-    return new DOM(el);
+    return new DOM(el = "html");
 }
 
 class DOM {
@@ -33,7 +33,7 @@ class DOM {
     hasClass(cl) {
         return cl
             ? Boolean(this.el.filter(el => el.classList.contains(el)).length)
-            : Boolean(this.el.filter(el => el.classList.length));
+            : Boolean(this.el.filter(el => el.className).length);
     }
 
     setClass(cl) {
@@ -44,6 +44,10 @@ class DOM {
     toggleClass(cl) {
         return this.el.forEach(el => el.classList.toggle(cl)),
         this;
+    }
+
+    getClass() {
+        return this.el.map(el => el.className);
     }
 
     wait(t, cb) {
@@ -107,7 +111,8 @@ class DOM {
     }
 
     addClass(cl) {
-        return this.el.forEach(el => el.classList.add(cl)), this;
+        return this.el.forEach(el => el.classList.add(cl)),
+        this;
     }
 
     removeClass(cl) {

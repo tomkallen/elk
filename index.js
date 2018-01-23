@@ -1,6 +1,3 @@
-console.log(h(".mydiv").html())
-h(".mydiv")
-    .html("Click me")
-    .on("click", el => el.show(".mydiv2"))
-h(".mydiv")
-    .toggle([".mydiv2"])
+console.log(h().getClass())
+
+console.log(h().hasClass())
