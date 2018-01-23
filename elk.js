@@ -75,7 +75,9 @@ class DOM {
 
         list.forEach(e => {
             e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
-        })
+        });
+
+        return this;
     }
 
     toggle(el) {
