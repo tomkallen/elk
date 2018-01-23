@@ -31,11 +31,13 @@ class DOM {
     }
 
     hasClass(cl) {
-        return this.el.filter(el => el.classList.contains(el)).length;
+        return cl
+            ? Boolean(this.el.filter(el => el.classList.contains(el)).length)
+            : Boolean(this.el.filter(el => el.classList.length));
     }
 
     setClass(cl) {
-        this.el.forEach(el => el.className = cl);
+        cl && this.el.forEach(el => el.className = cl);
         return this;
     }
 
@@ -46,20 +48,20 @@ class DOM {
 
     wait(t, cb) {
         return setTimeout(() => cb(this), t),
-            this;
+        this;
     }
 
     hide(el) {
-        const list = el ?
-            Array.from(document.querySelectorAll(el)) :
-            this.el
+        const list = el
+            ? Array.from(document.querySelectorAll(el))
+            : this.el
 
         list.forEach(e => {
             if (!e.getAttribute("elk-oldVisibilty")) {
                 const style = (
-                    window.getComputedStyle ?
-                    getComputedStyle(e, null) :
-                    e.currentStyle).display;
+                    window.getComputedStyle
+                    ? getComputedStyle(e, null)
+                    : e.currentStyle).display;
                 e.setAttribute("elk-oldVisibilty", style);
                 e.style.display = 'none';
             }
@@ -67,9 +69,9 @@ class DOM {
     }
 
     show(el) {
-        const list = el ?
-            Array.from(document.querySelectorAll(el)) :
-            this.el
+        const list = el
+            ? Array.from(document.querySelectorAll(el))
+            : this.el
 
         list.forEach(e => {
             e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
@@ -77,20 +79,23 @@ class DOM {
     }
 
     toggle(el) {
-        const list = el ?
-            Array.from(document.querySelectorAll(el)) :
-            this.el
+        const list = el
+            ? Array.from(document.querySelectorAll(el))
+            : this.el
 
         list.forEach(e => {
-            const style = (window.getComputedStyle ? getComputedStyle(e, null) : e.currentStyle).display;
+            const style = (
+                window.getComputedStyle
+                ? getComputedStyle(e, null)
+                : e.currentStyle).display;
             if (style == 'none') {
                 e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
             } else {
                 if (!e.getAttribute("elk-oldVisibilty")) {
                     const style = (
-                        window.getComputedStyle ?
-                        getComputedStyle(e, null) :
-                        e.currentStyle).display;
+                        window.getComputedStyle
+                        ? getComputedStyle(e, null)
+                        : e.currentStyle).display;
                     e.setAttribute("elk-oldVisibilty", style);
                     e.style.display = 'none';
                 }
