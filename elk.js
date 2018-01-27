@@ -7,12 +7,12 @@ class DOM {
         this.el = Array.from(document.querySelectorAll(el));
     }
 
-    html(val) {
+    html(val, el) {
         if (val) {
-            this.el.forEach(e => e.innerHTML = val)
+            this._getNodeList(el).forEach(e => e.innerHTML = val)
             return this;
         } else {
-            return this.el.map(e => e.innerHTML);
+            return this._getNodeList(el).map(e => e.innerHTML);
         }
     }
 
@@ -30,25 +30,30 @@ class DOM {
         this;
     }
 
-    hasClass(cl) {
+    hasClass(cl, el) {
+        if (cl instanceof DOM) {
+            // parameters shift in case when only an element is passed
+            el = cl;
+            cl = null;
+        }
         return cl
-            ? Boolean(this.el.filter(el => el.classList.contains(el)).length)
-            : Boolean(this.el.filter(el => el.className).length);
+            ? Boolean(this._getNodeList(el).filter(e => e.classList.contains(cl)).length)
+            : Boolean(this._getNodeList(el).filter(e => e.className).length);
     }
 
-    setClass(cl) {
-        cl && this.el.forEach(el => el.className = cl);
+    setClass(cl, el) {
+        cl && this._getNodeList(el).forEach(e => e.className = cl);
         return this;
     }
 
-    toggleClass(cl) {
-        return this.el.forEach(el => el.classList.toggle(cl)),
+    toggleClass(cl, el) {
+        return this._getNodeList(el).forEach(e => e.classList.toggle(cl)),
         this;
     }
 
     getClass(el) {
-        const list = DOM._getNodeList(el);
-        return list.map(el => el.className);
+        const list = this._getNodeList(el);
+        return list.map(e => e.className);
     }
 
     wait(time, cb) {
@@ -59,8 +64,7 @@ class DOM {
     }
 
     hide(el) {
-        const list = DOM._getNodeList(el);
-        list.forEach(e => {
+        this._getNodeList(el).forEach(e => {
             if (!e.getAttribute("elk-oldVis")) {
                 const style = (
                     window.getComputedStyle
@@ -73,8 +77,7 @@ class DOM {
     }
 
     show(el) {
-        const list = DOM._getNodeList(el);
-        list.forEach(e => {
+        this._getNodeList(el).forEach(e => {
             e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
         });
 
@@ -82,7 +85,7 @@ class DOM {
     }
 
     toggle(el) {
-        const list = DOM._getNodeList(el);
+        const list = this._getNodeList(el);
         list.forEach(e => {
             const style = (
                 window.getComputedStyle
@@ -104,23 +107,23 @@ class DOM {
         return this;
     }
 
-    addClass(cl) {
-        return this.el.forEach(el => el.classList.add(cl)),
+    addClass(cl, el) {
+        return this._getNodeList(el).forEach(el => el.classList.add(cl)),
         this;
     }
 
-    removeClass(cl) {
+    removeClass(cl, el) {
+
         if (cl) {
-            this.el.forEach(el => el.classList.remove(cl))
+            this._getNodeList(el).forEach(el => el.classList.remove(cl))
         } else {
-            this.el.forEach(el => el.className = "")
+            this._getNodeList(el).forEach(el => el.className = "")
         }
         return this;
     }
 
     kill(el) {
-        const list = this._getNodeList(el);
-        list.forEach(el => el.remove());
+        this._getNodeList(el).forEach(el => el.remove());
         return this;
     }
 
@@ -128,7 +131,7 @@ class DOM {
         return el && (el.nodeType === 1 || el.nodeType == 11);
     }
 
-    _getNodeList(args){
+    _getNodeList(args) {
         // if elk instance is passed as an argument then return its elements
         if (args instanceof DOM) {
             return args.el;
