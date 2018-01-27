@@ -1,5 +1,5 @@
-function h(el) {
-    return new DOM(el = "html");
+function h(el = "body") {
+    return new DOM(el);
 }
 
 class DOM {
@@ -46,37 +46,34 @@ class DOM {
         this;
     }
 
-    getClass() {
-        return this.el.map(el => el.className);
+    getClass(el) {
+        const list = DOM._getNodeList(el);
+        return list.map(el => el.className);
     }
 
-    wait(t, cb) {
-        return setTimeout(() => cb(this), t),
+    wait(time, cb) {
+        // firing callback with this instead of event to support 'inner chaining'
+        // i.e.: h("mydiv").wait(1000, el => el.kill("otherdiv")).hide();
+        return setTimeout(() => cb(this), time),
         this;
     }
 
     hide(el) {
-        const list = el
-            ? Array.from(document.querySelectorAll(el))
-            : this.el
-
+        const list = DOM._getNodeList(el);
         list.forEach(e => {
-            if (!e.getAttribute("elk-oldVisibilty")) {
+            if (!e.getAttribute("elk-oldVis")) {
                 const style = (
                     window.getComputedStyle
                     ? getComputedStyle(e, null)
                     : e.currentStyle).display;
-                e.setAttribute("elk-oldVisibilty", style);
+                e.setAttribute("elk-oldVis", style);
                 e.style.display = 'none';
             }
         })
     }
 
     show(el) {
-        const list = el
-            ? Array.from(document.querySelectorAll(el))
-            : this.el
-
+        const list = DOM._getNodeList(el);
         list.forEach(e => {
             e.style.display = e.getAttribute("elk-oldVisibilty") || "block";
         });
@@ -85,10 +82,7 @@ class DOM {
     }
 
     toggle(el) {
-        const list = el
-            ? Array.from(document.querySelectorAll(el))
-            : this.el
-
+        const list = DOM._getNodeList(el);
         list.forEach(e => {
             const style = (
                 window.getComputedStyle
@@ -124,16 +118,27 @@ class DOM {
         return this;
     }
 
-    kill(el = this.el) {
-        if (!Array.isArray(el)) {
-            el.remove();
-        } else {
-            this.el.forEach(el => el.remove())
-        }
+    kill(el) {
+        const list = this._getNodeList(el);
+        list.forEach(el => el.remove());
         return this;
     }
 
-    static _isNode(el) {
+    _isNode(el) {
         return el && (el.nodeType === 1 || el.nodeType == 11);
+    }
+
+    _getNodeList(args){
+        // if elk instance is passed as an argument then return its elements
+        if (args instanceof DOM) {
+            return args.el;
+        }
+        // otherwise query select nodes
+        if (typeof args === "string" && args.length) {
+            return Array.from(document.querySelectorAll(args));
+        }
+        // or return self elements if no argument is provided
+        console.log(this.el)
+        return this.el;
     }
 }
