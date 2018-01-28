@@ -1,4 +1,4 @@
-export function h(el = "body") {
+export default function h(el = "body") {
     return new DOM(el);
 }
 

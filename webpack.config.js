@@ -22,7 +22,7 @@ const config = {
   output: {
     path: __dirname + '/lib',
     filename: outputFile,
-    library: libraryName,
+    library: 'h',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
