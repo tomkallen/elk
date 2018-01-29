@@ -2,7 +2,7 @@ import {mix} from './mixer';
 import {css} from './css';
 import {visibility} from './visibility';
 
-class DOM__PROTO {};
+class DOM__PROTO {}
 
 class DOM extends mix(DOM__PROTO).with (css, visibility) {
     constructor(el) {
@@ -12,24 +12,24 @@ class DOM extends mix(DOM__PROTO).with (css, visibility) {
 
     html(val, el) {
         if (val) {
-            this._getNodeList(el).forEach(e => e.innerHTML = val)
+            this._getNodeList(el).forEach((e) => e.innerHTML = val)
             return this;
         } else {
-            return this._getNodeList(el).map(e => e.innerHTML);
+            return this._getNodeList(el).map((e) => e.innerHTML);
         }
     }
 
     text(val) {
         if (val) {
-            this.el.forEach(e => e.textContent = val)
+            this.el.forEach((e) => e.textContent = val)
             return this;
         } else {
-            return this.el.map(e => e.textContent);
+            return this.el.map((e) => e.textContent);
         }
     }
 
     on(event, cb) {
-        return this.el.forEach(el => el.addEventListener(event, () => cb(this))),
+        return this.el.forEach((e) => e.addEventListener(event, () => cb(this))),
         this;
     }
 
