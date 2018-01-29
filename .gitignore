@@ -31,3 +31,7 @@ node_modules
 .vscode
 
 .DS_Store
+
+sample.js
+
+index.html
