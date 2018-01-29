@@ -62,4 +62,4 @@ export default function h(el = "body") {
     return new Helm(el);
 }
 
-h.plugin = DOM.prototype;
+h.plugin = Helm.prototype;
