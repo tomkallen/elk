@@ -1,11 +1,15 @@
-import {mix} from './mixer';
-import {css} from './css';
-import {visibility} from './visibility';
-import {manipulation} from './manipulation';
+import {
+    mix
+} from './mixer';
+import {
+    css,
+    manipulation,
+    visibility
+} from './modules';
 
 class Helm__PROTO {}
 
-class Helm extends mix(Helm__PROTO).with (css, manipulation, visibility) {
+class Helm extends mix(Helm__PROTO).with(css, manipulation, visibility) {
     constructor(el) {
         super();
         this.el = Array.from(document.querySelectorAll(el));
@@ -31,14 +35,14 @@ class Helm extends mix(Helm__PROTO).with (css, manipulation, visibility) {
 
     on(event, cb) {
         return this.el.forEach((e) => e.addEventListener(event, () => cb(this))),
-        this;
+            this;
     }
 
     wait(time, cb) {
         // firing callback with this instead of event to support 'inner chaining'
         // i.e.: h("mydiv").wait(1000, el => el.kill("otherdiv")).hide();
         return setTimeout(() => cb(this), time),
-        this;
+            this;
     }
 
     _isNode(el) {
