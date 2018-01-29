@@ -1,10 +1,11 @@
 import {mix} from './mixer';
 import {css} from './css';
 import {visibility} from './visibility';
+import {manipulation} from './manipulation';
 
 class Helm__PROTO {}
 
-class Helm extends mix(Helm__PROTO).with (css, visibility) {
+class Helm extends mix(Helm__PROTO).with (css, manipulation, visibility) {
     constructor(el) {
         super();
         this.el = Array.from(document.querySelectorAll(el));
