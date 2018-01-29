@@ -11,7 +11,7 @@ export const manipulation = (superclass) => class extends superclass {
             elB = this._getNodeList(elA)[0];
             elA = this.el[0];
         } else {
-            return this
+            return this;
         }
 
         const temp = document.createTextNode("");

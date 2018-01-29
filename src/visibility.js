@@ -11,6 +11,7 @@ export const visibility = (superclass) => class extends superclass {
                 e.style.display = 'none';
             }
         });
+
         return this;
     }
 
@@ -43,12 +44,14 @@ export const visibility = (superclass) => class extends superclass {
                     e.style.display = 'none';
                 }
             }
-        })
+        });
+
         return this;
     }
 
     kill(el) {
         this._getNodeList(el).forEach((el) => el.remove());
+
         return this;
     }
 }
