@@ -2,7 +2,7 @@ export const css = (superclass) => class extends superclass {
 
     hasClass(cl, el) {
         super.hasClass && super.hasClass();
-        if (cl instanceof DOM) {
+        if (cl instanceof superclass) {
             // parameters shift in case when only an element is passed
             el = cl;
             cl = null;

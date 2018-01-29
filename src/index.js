@@ -2,9 +2,9 @@ import {mix} from './mixer';
 import {css} from './css';
 import {visibility} from './visibility';
 
-class DOM__PROTO {}
+class Helm__PROTO {}
 
-class DOM extends mix(DOM__PROTO).with (css, visibility) {
+class Helm extends mix(Helm__PROTO).with (css, visibility) {
     constructor(el) {
         super();
         this.el = Array.from(document.querySelectorAll(el));
@@ -45,8 +45,8 @@ class DOM extends mix(DOM__PROTO).with (css, visibility) {
     }
 
     _getNodeList(args) {
-        // if elk instance is passed as an argument then return its elements
-        if (args instanceof DOM) {
+        // if Helm instance is passed as an argument then return its elements
+        if (args instanceof Helm) {
             return args.el;
         }
         // otherwise query select nodes
@@ -59,5 +59,7 @@ class DOM extends mix(DOM__PROTO).with (css, visibility) {
 }
 
 export default function h(el = "body") {
-    return new DOM(el);
+    return new Helm(el);
 }
+
+h.plugin = DOM.prototype;

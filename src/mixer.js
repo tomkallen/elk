@@ -1,6 +1,6 @@
-export const mix = (superclass) => new MixinBuilder(superclass);
+export const mix = (superclass) => new Mixin(superclass);
 
-class MixinBuilder {
+class Mixin {
     constructor(superclass) {
         this.superclass = superclass;
     }
