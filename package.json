@@ -1,8 +1,8 @@
 {
-  "name": "elk",
+  "name": "helmjs",
   "version": "0.0.1",
-  "description": "",
-  "main": "lib/index.js",
+  "description": "HTML elements control library",
+  "main": "lib/helm.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomkallen/elk.git"
+    "url": "git+https://github.com/tomkallen/helmjs.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Alex Bykov",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tomkallen/elk/issues"
+    "url": "https://github.com/tomkallen/helmjs/issues"
   },
-  "homepage": "https://github.com/tomkallen/elk#readme",
+  "homepage": "https://github.com/tomkallen/helmjs#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",

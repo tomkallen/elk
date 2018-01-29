@@ -12,7 +12,7 @@ class DOM extends mix(DOM__PROTO).with (css, visibility) {
 
     html(val, el) {
         if (val) {
-            this._getNodeList(el).forEach((e) => e.innerHTML = val)
+            this._getNodeList(el).forEach((e) => e.innerHTML = val);
             return this;
         } else {
             return this._getNodeList(el).map((e) => e.innerHTML);
@@ -21,7 +21,7 @@ class DOM extends mix(DOM__PROTO).with (css, visibility) {
 
     text(val) {
         if (val) {
-            this.el.forEach((e) => e.textContent = val)
+            this.el.forEach((e) => e.textContent = val);
             return this;
         } else {
             return this.el.map((e) => e.textContent);
