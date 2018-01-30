@@ -23,7 +23,10 @@ export const css = (superclass) => class extends superclass {
 
     getClass(el) {
         const list = this._getNodeList(el);
-        return list.map((e) => e.className);
+        return [].concat(list.map((e) => e.className.split(" "))).filter((c, i, arr) => {
+            arr.indexOf(c) === i
+        });
+
     }
 
     addClass(cl, el) {

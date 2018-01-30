@@ -24,14 +24,14 @@ class Helm extends mix(Helm__PROTO).with(css, manipulation, visibility) {
     }
   }
 
-  text(val) {
-    if (val) {
-      this.el.forEach((e) => e.textContent = val);
-      return this;
-    } else {
-      return this.el.map((e) => e.textContent);
+  text(val, el) {
+      if (val) {
+        this._getNodeList(el).forEach((e) => e.textContent = val);
+        return this;
+      } else {
+        return this._getNodeList(el).map((e) => e.textContent);
+      }
     }
-  }
 
   on(event, cb) {
     return this.el.forEach((e) => e.addEventListener(event, () => cb(this))),

@@ -1,32 +1,44 @@
-## HTML within an element  ##
-### .html(_value_) ####  
-setter - _chainable_ | getter - _String_  
+## HTML within an element  
+
+## Core
+### .html([*value*], [*selector*])    
+setter - *chainable*
+
 Sets or gets inner HTML of selected elements.
 
 ---
-### .text(value)
-setter - _chainable_ | getter - _String_  
-Sets or gets text of selected elements. HTML tags are filtered out.
+### .text([[*value*], [*selector*])
+setter - *chainable*
+
+Sets or gets text of selected elements.
 
 ---
-## Classes
-### .hasClass(_className_)
-_Boolean_  
-Returns `true` if _any_ selected element has _className_  
-If _className_ is omitted then returns `true` if  _any_ selected element has at least one class.
+## Styling
+### .hasClass([*className*], [*selector*])
+
+Returns `true` if *any* selected element has *className*  
+If *className* is omitted then returns `true` if  *any* selected element has *at least one* class.
 
 ---
-### .setClass(className)
-_chainable_  
-Sets _className_ to selected elements as the _only_ class. All other classes are removed.
+### .setClass(className, [*selector*])
+*chainable*  
+
+Sets *className* as the *only* class for the elements. All other classes are removed.
 
 ---
-### .addClass(className)
-_chainable_  
-Adds _className_ to selected elements.
+### .addClass(className, [*selector*])
+*chainable*  
+
+Adds _className_ to the elements.
 
 ---
-### .removeClass(_className_)
-_chainable_  
-Removes _className_ from selected elements.  
-If _className_ is not passed then all classes are removed form the selected elements.
+### .removeClass([*className*], [*selector*])
+*chainable*  
+
+Removes *className* from elements.  
+If *className* is not passed then all classes are removed form the selected elements.
+
+---
+### .getClass([*selector*])
+
+Returns an array of classes that exist on selected elements.
