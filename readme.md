@@ -1,4 +1,5 @@
-## HTML within an element  
+# How it works
+
 
 ## Core
 ### .html([*value*], [*selector*])    
@@ -29,7 +30,7 @@ Sets *className* as the *only* class for the elements. All other classes are rem
 ### .addClass(className, [*selector*])
 *chainable*  
 
-Adds _className_ to the elements.
+Adds *className* to the elements.
 
 ---
 ### .removeClass([*className*], [*selector*])
