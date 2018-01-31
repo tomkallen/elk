@@ -4,9 +4,9 @@ export const visibility = (superclass) => class extends superclass {
         this._getNodeList(el).forEach((e) => {
             if (!e.getAttribute("elk-oldVis")) {
                 const style = (
-                    window.getComputedStyle
-                    ? getComputedStyle(e, null)
-                    : e.currentStyle).display;
+                    window.getComputedStyle ?
+                    getComputedStyle(e, null) :
+                    e.currentStyle).display;
                 e.setAttribute("elk-oldVis", style);
                 e.style.display = 'none';
             }
@@ -29,17 +29,17 @@ export const visibility = (superclass) => class extends superclass {
 
         list.forEach((e) => {
             const style = (
-                window.getComputedStyle
-                ? getComputedStyle(e, null)
-                : e.currentStyle).display;
+                window.getComputedStyle ?
+                getComputedStyle(e, null) :
+                e.currentStyle).display;
             if (style === 'none') {
                 e.style.display = e.getAttribute(attr) || "block";
             } else {
                 if (!e.getAttribute(attr)) {
                     const style = (
-                        window.getComputedStyle
-                        ? getComputedStyle(e, null)
-                        : e.currentStyle).display;
+                        window.getComputedStyle ?
+                        getComputedStyle(e, null) :
+                        e.currentStyle).display;
                     e.setAttribute(attr, style);
                     e.style.display = 'none';
                 }

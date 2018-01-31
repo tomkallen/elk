@@ -6,9 +6,9 @@ export const css = (superclass) => class extends superclass {
             el = cl;
             cl = null;
         }
-        return cl
-            ? Boolean(this._getNodeList(el).filter((e) => e.classList.contains(cl)).length)
-            : Boolean(this._getNodeList(el).filter((e) => e.className).length);
+        return cl ?
+            Boolean(this._getNodeList(el).filter((e) => e.classList.contains(cl)).length) :
+            Boolean(this._getNodeList(el).filter((e) => e.className).length);
     }
 
     setClass(cl, el) {
@@ -18,7 +18,7 @@ export const css = (superclass) => class extends superclass {
 
     toggleClass(cl, el) {
         return this._getNodeList(el).forEach((e) => e.classList.toggle(cl)),
-        this;
+            this;
     }
 
     getClass(el) {
@@ -31,7 +31,7 @@ export const css = (superclass) => class extends superclass {
 
     addClass(cl, el) {
         return this._getNodeList(el).forEach((e) => e.classList.add(cl)),
-        this;
+            this;
     }
 
     removeClass(cl, el) {
