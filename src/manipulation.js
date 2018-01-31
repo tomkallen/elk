@@ -44,16 +44,39 @@ export const manipulation = (superclass) => class extends superclass {
         return this;
     }
 
-    before(el) {
-        const list = this._getNodeList(el);
-        list.forEach((e) => e.parentNode.insertBefore(this.el, e));
+    before(elA, elB) {
+
+        let el, target;
+
+        if (arguments.length === 1) {
+            target = this._getNodeList(elA);
+            el = this.el;
+        } else if (arguments.length === 2) {
+            target = this._getNodeList(elB);
+            el = his._getNodeList(elA);
+        } else {
+            return this;
+        }
+
+        target.forEach((e) => e.parentNode.insertBefore(el, e));
 
         return this;
     }
 
-    after(el) {
-        const list = this._getNodeList(el);
-        list.forEach((e) => e.parentNode.insertBefore(this.el, e.nextSibling));
+    after(elA, elB) {
+        let el, target;
+
+        if (arguments.length === 1) {
+            target = this._getNodeList(elA);
+            el = this.el;
+        } else if (arguments.length === 2) {
+            target = this._getNodeList(elB);
+            el = his._getNodeList(elA);
+        } else {
+            return this;
+        }
+
+        target.forEach((e) => e.parentNode.insertBefore(el, e.nextSibling));
 
         return this;
     }
