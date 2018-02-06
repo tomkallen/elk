@@ -50,10 +50,10 @@ export const manipulation = (superclass) => class extends superclass {
 
         if (arguments.length === 1) {
             target = this._getNodeList(elA);
-            el = this.el;
+            el = this.el[0];
         } else if (arguments.length === 2) {
             target = this._getNodeList(elB);
-            el = his._getNodeList(elA);
+            el = this._getNodeList(elA)[0];
         } else {
             return this;
         }

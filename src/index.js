@@ -13,7 +13,16 @@ class Helm extends mix(Helm__PROTO).with(css, manipulation, visibility) {
     constructor(selector) {
         super();
         this.selector = selector;
-        this.el = Array.from(document.querySelectorAll(rule));
+        if (Helm._isTag(selector)) {
+            this.el = Helm._createNewElement(selector)
+        } else {
+            this.el = Array.from(document.querySelectorAll(selector));
+        }
+    }
+
+    static _createNewElement(selector) {
+        const tag = selector.slice(1, selector.length - 1);        
+        return [document.createElement(tag)];
     }
 
     html(val, el) {
@@ -46,8 +55,12 @@ class Helm extends mix(Helm__PROTO).with(css, manipulation, visibility) {
             this;
     }
 
-    _isNode(el) {
+    static _isNode(el) {
         return el && (el.nodeType === 1 || el.nodeType === 11);
+    }
+
+    static _isTag(selector) {
+        return /<*?[A-Za-z]>/.test(selector)
     }
 
     _getNodeList(args) {

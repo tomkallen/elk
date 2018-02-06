@@ -1,5 +1,6 @@
 # Logs
 logs
+package-lock.json
 *.log
 
 # Runtime data
@@ -32,6 +33,6 @@ node_modules
 
 .DS_Store
 
-sample.js
+test.js
 
 index.html
