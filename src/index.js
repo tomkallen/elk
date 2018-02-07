@@ -14,6 +14,16 @@ class Helm extends mix(Helm__PROTO).with(attributes, css, manipulation, visibili
     constructor(selector) {
         super();
         this.selector = selector;
+
+        if (Array.isArray(selector)) {
+            if (selector.length && Helm._isNode(selector[0])) {
+                this.el = selector;
+            } else {
+                this.el = [];
+            }
+            return this;
+        }
+
         if (Helm._isTag(selector)) {
             this.el = Helm._createNewElement(selector)
         } else {

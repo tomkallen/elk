@@ -1,7 +1,8 @@
 export const attributes = (superclass) => class extends superclass {
     attr(arg, el) {
         if (typeof arg === "string") {
-            return this._getNodeList(el).map((e) => e.getAttribute(arg));
+            const filteredElements = this._getNodeList(el).filter((e) => e.getAttribute(arg));
+            return h(filteredElements);
         }
 
         if (typeof arg === "object") {

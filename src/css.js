@@ -7,8 +7,8 @@ export const css = (superclass) => class extends superclass {
             cl = null;
         }
         return cl ?
-            Boolean(this._getNodeList(el).filter((e) => e.classList.contains(cl)).length) :
-            Boolean(this._getNodeList(el).filter((e) => e.className).length);
+            h(this._getNodeList(el).filter((e) => e.classList.contains(cl))) :
+            h(this._getNodeList(el).filter((e) => e.className));
     }
 
     setClass(cl, el) {

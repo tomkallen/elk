@@ -17,8 +17,8 @@ Sets or gets text of selected elements.
 ## Styling
 ### .hasClass([*className*], [*selector*])
 
-Returns `true` if *any* selected element has *className*  
-If *className* is omitted then returns `true` if  *any* selected element has *at least one* class.
+Returns new instance of Helm which elements have *className*  
+If *className* is omitted then returns new instance of Helm which elements have *at least one* class of any name.
 
 ---
 ### .setClass(className, [*selector*])
