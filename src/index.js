@@ -2,6 +2,7 @@ import {
     mix
 } from './mixer';
 import {
+    attributes,
     css,
     manipulation,
     visibility
@@ -9,7 +10,7 @@ import {
 
 class Helm__PROTO {}
 
-class Helm extends mix(Helm__PROTO).with(css, manipulation, visibility) {
+class Helm extends mix(Helm__PROTO).with(attributes, css, manipulation, visibility) {
     constructor(selector) {
         super();
         this.selector = selector;
@@ -21,7 +22,7 @@ class Helm extends mix(Helm__PROTO).with(css, manipulation, visibility) {
     }
 
     static _createNewElement(selector) {
-        const tag = selector.slice(1, selector.length - 1);        
+        const tag = selector.slice(1, selector.length - 1);
         return [document.createElement(tag)];
     }
 
